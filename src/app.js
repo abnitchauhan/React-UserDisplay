@@ -1,11 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import axios from 'axios';
+import store from '../store/store';
+import {addUsers} from './actions/users';
 
 class App extends React.Component {
-    render() {
-        return (
-            <h1>Welcome to REACT!!</h1>
-        )
+   
+    componentDidMount()
+    {
+        axios.get('http://localhost:3000/users')
+        .then(response=>{
+            console.log(response.data);
+            store.dispatch(addUsers(response.data.results))
+        })
+    }
+
+    render()
+    {
+        return(<h1>Welcome to React ! </h1>);
     }
 }
 
