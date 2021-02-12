@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import store from '../store/store';
 import {addUsers} from './actions/users';
+import Header from './components/Header';
+import { Provider } from 'react-redux';
 
 class App extends React.Component {
    
@@ -17,8 +19,12 @@ class App extends React.Component {
 
     render()
     {
-        return(<h1>Welcome to React ! </h1>);
+        return(<Header />);
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(
+<Provider store= {store} >
+<App />
+</Provider>
+, document.getElementById('root'));
